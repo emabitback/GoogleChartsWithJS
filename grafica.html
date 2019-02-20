@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        
+        
+        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+        
+        <script type="text/javascript">
+               google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+
+              function drawChart() {
+                    var nombres=[];
+                    var promedio=[];
+                    var colores=[];
+                    var a =[];
+
+                    for (var i = 0; i <= 2; i++) {
+                            nombres[i] = prompt("Ingresa tu nombre:");
+                            var pro=prompt("Ingresa tu promedio:");
+                            var p=parseInt(pro);
+                            promedio[i]=p;
+                            if (p<70)
+                                colores[i]='red';
+                            if (p>=70)
+                                colores[i]='blue';
+                    }
+
+                    var data = new google.visualization.DataTable();
+                        data.addColumn('string','NOMBRE');
+                        data.addColumn('number','PROMEDIO');
+                        data.addColumn({type:'string', role:'style'}); // annotation role col.
+
+
+
+                    for (var i = 0; i <= 2; i++){
+                        a[i]=[nombres[i],promedio[i],colores[i]];
+                        data.addRow(a[i]);
+                    }
+                    
+                
+
+                var options = {
+                  title: 'Practica: ',
+                  hAxis: {title: 'Alumnos',  titleTextStyle: {color: '#333'}},
+                  vAxis: {minValue: 0}
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('grafico'));
+                chart.draw(data, options);
+              }     
+           
+            
+        </script>
+    </head>
+    
+    <body>
+        
+       <div id="grafico" style="width: 100%; height: 500px;"></div>
+
+    </body>
+</html>
